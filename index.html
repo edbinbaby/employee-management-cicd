@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dirt Draft — Kerala's Off-Road Destination</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#0a0d12;color:#e8edf5;font-family:'Barlow',sans-serif;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+img{display:block;width:100%;object-fit:cover;}
+::selection{background:#1a6fd4;color:#fff;}
+
+/* TOPBAR */
+.topbar{background:#050709;padding:7px 5vw;display:flex;justify-content:space-between;align-items:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#5a7a9a;letter-spacing:.8px;border-bottom:1px solid #111e2e;}
+.topbar .right{color:#2a7fd4;}
+
+/* HEADER */
+.site-header{position:sticky;top:0;z-index:100;background:#fff;box-shadow:0 2px 20px rgba(0,0,0,.18);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:72px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-icon{width:42px;height:42px;background:#1a6fd4;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.logo-icon svg{width:26px;height:26px;}
+.brand{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;color:#0a0d12;letter-spacing:1px;text-transform:uppercase;}
+.brand span{color:#1a6fd4;}
+.logo-sub{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#7a8fa8;letter-spacing:1.5px;text-transform:uppercase;}
+nav{display:flex;align-items:center;gap:2px;}
+nav a{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#1a1a2e;padding:8px 16px;border-radius:3px;transition:color .15s,background .15s;}
+nav a:hover{color:#1a6fd4;background:#f0f5ff;}
+.nav-cta{background:#1a6fd4!important;color:#fff!important;padding:10px 22px!important;border-radius:3px;margin-left:10px;}
+.nav-cta:hover{background:#1258b0!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;}
+.hamburger span{width:24px;height:2px;background:#1a1a2e;border-radius:2px;}
+
+/* HERO */
+.hero-wrap{position:relative;height:88vh;min-height:520px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(5,7,9,.5) 0%,rgba(5,7,9,.1) 40%,rgba(5,7,9,.7) 100%),url('https://images.unsplash.com/photo-1730829633900-0d97444c2bc6?w=1800&q=80') center/cover no-repeat;animation:heroZoom 18s ease-in-out infinite alternate;}
+@keyframes heroZoom{from{transform:scale(1);}to{transform:scale(1.06);}}
+.hero-content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 6vw 7vh;}
+.hero-eye{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:3px;color:#4a90e2;text-transform:uppercase;display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.hero-eye::before{content:"";width:28px;height:1.5px;background:#4a90e2;display:inline-block;}
+.hero-h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(52px,8.5vw,110px);line-height:.92;text-transform:uppercase;color:#fff;margin-bottom:22px;}
+.hero-h1 em{color:#4a90e2;font-style:normal;}
+.hero-sub{font-size:18px;color:rgba(232,237,245,.8);max-width:480px;line-height:1.6;margin-bottom:36px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.hbtn{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:16px 34px;border-radius:3px;border:none;display:inline-flex;align-items:center;gap:8px;transition:transform .18s,background .18s;}
+.hbtn-solid{background:#1a6fd4;color:#fff;}
+.hbtn-solid:hover{background:#1258b0;transform:translateY(-2px);}
+.hbtn-outline{background:transparent;border:2px solid rgba(255,255,255,.6);color:#fff;}
+.hbtn-outline:hover{border-color:#4a90e2;color:#4a90e2;transform:translateY(-2px);}
+
+/* STAT BAND */
+.stat-band{background:#1a6fd4;display:flex;flex-wrap:wrap;}
+.stat-item{flex:1 1 160px;padding:22px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.15);}
+.stat-item:last-child{border-right:none;}
+.stat-item .n{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:#fff;display:block;}
+.stat-item .l{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(255,255,255,.7);letter-spacing:1px;text-transform:uppercase;}
+
+/* AERIAL SPLIT */
+.aerial-section{display:grid;grid-template-columns:1fr 1fr;min-height:550px;}
+.aerial-img{position:relative;overflow:hidden;}
+.aerial-img img{height:100%;transition:transform .6s ease;}
+.aerial-img:hover img{transform:scale(1.04);}
+.aerial-img .img-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(5,7,9,.85),transparent);padding:30px 26px 18px;}
+.aerial-img .img-label span{font-family:'JetBrains Mono',monospace;font-size:11px;color:#4a90e2;display:block;margin-bottom:4px;}
+.aerial-img .img-label h3{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;text-transform:uppercase;color:#fff;}
+.aerial-info{background:#111827;display:flex;flex-direction:column;justify-content:center;padding:60px 5vw;position:relative;overflow:hidden;}
+.aerial-info::before{content:"";position:absolute;top:0;right:0;width:6px;height:100%;background:linear-gradient(to bottom,#4a90e2,#1a6fd4,#0d3d7a);}
+.aerial-info h2{font-family:'Barlow Condensed',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:900;text-transform:uppercase;line-height:1;color:#fff;margin-bottom:18px;}
+.aerial-info h2 span{color:#4a90e2;}
+.aerial-info p{font-size:16px;line-height:1.75;color:#8a9bb0;margin-bottom:28px;max-width:440px;}
+.tag-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+.atag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.8px;text-transform:uppercase;padding:6px 12px;border-radius:2px;border:1px solid #263248;color:#7a90a8;}
+.info-btn{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:14px 30px;border-radius:3px;border:none;background:#1a6fd4;color:#fff;display:inline-flex;align-items:center;gap:8px;align-self:flex-start;transition:background .18s,transform .18s;}
+.info-btn:hover{background:#1258b0;transform:translateY(-2px);}
+
+/* PHOTO GRID */
+.photo-section{padding:70px 5vw;background:#0d1117;}
+.section-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2.5px;color:#4a90e2;text-transform:uppercase;margin-bottom:10px;}
+.section-title{font-family:'Barlow Condensed',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:900;text-transform:uppercase;color:#fff;margin-bottom:40px;}
+.photo-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 260px;gap:12px;}
+.photo-tile{position:relative;overflow:hidden;border-radius:3px;}
+.photo-tile:first-child{grid-row:1/3;}
+.photo-tile img{height:100%;transition:transform .5s ease;}
+.photo-tile:hover img{transform:scale(1.06);}
+.photo-tile .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,13,18,.75) 0%,transparent 60%);display:flex;align-items:flex-end;padding:16px;}
+.photo-tile .overlay span{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;color:#fff;}
+
+/* FLEET */
+.fleet-section{padding:70px 5vw 90px;background:#0a0d12;}
+.fleet-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;}
+.fleet-header-btns{display:flex;gap:10px;}
+.fhbtn{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:12px 24px;border-radius:3px;border:none;display:inline-flex;align-items:center;gap:6px;transition:background .18s,transform .18s;}
+.fhbtn.primary{background:#1a6fd4;color:#fff;}
+.fhbtn.primary:hover{background:#1258b0;transform:translateY(-2px);}
+.fhbtn.ghost{background:transparent;border:1.5px solid #263248;color:#8a9bb0;}
+.fhbtn.ghost:hover{border-color:#4a90e2;color:#4a90e2;transform:translateY(-2px);}
+.fleet-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;}
+.car-card{background:#111827;border:1px solid #1e2d42;border-radius:5px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s;position:relative;}
+.car-card::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#4a90e2 0%,#4a90e2 35%,#1a6fd4 35%,#1a6fd4 60%,transparent 60%);}
+.car-card:hover{border-color:#1a6fd4;transform:translateY(-4px);}
+.car-img{height:170px;overflow:hidden;position:relative;}
+.car-img img{height:100%;transition:transform .4s ease;}
+.car-card:hover .car-img img{transform:scale(1.06);}
+.badge{position:absolute;top:10px;left:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.5px;padding:4px 9px;border-radius:2px;text-transform:uppercase;}
+.badge.Easy{background:rgba(111,174,114,.2);color:#6fae72;border:1px solid #6fae72;}
+.badge.Moderate{background:rgba(217,164,65,.2);color:#d9a441;border:1px solid #d9a441;}
+.badge.Extreme{background:rgba(194,80,80,.2);color:#c25050;border:1px solid #c25050;}
+.car-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1;}
+.car-plate{font-family:'JetBrains Mono',monospace;font-size:10px;color:#4a90e2;letter-spacing:1px;margin-bottom:6px;}
+.car-body h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:2px;}
+.car-cls{font-size:12px;color:#5a7a9a;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.car-specs{list-style:none;margin:0 0 16px;padding:0;}
+.car-specs li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #1e2d42;font-size:12.5px;gap:8px;}
+.car-specs li:last-child{border-bottom:none;}
+.car-specs li span:first-child{color:#5a7a9a;}
+.car-specs li span:last-child{font-family:'JetBrains Mono',monospace;color:#c8d5e5;text-align:right;}
+.car-actions{margin-top:auto;display:flex;gap:8px;}
+.ca-book{flex:1;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:10px 8px;border-radius:2px;text-decoration:none;border:1.5px solid #1a6fd4;color:#4a90e2;background:transparent;transition:background .18s,color .18s;}
+.ca-book:hover{background:#1a6fd4;color:#fff;}
+.ca-go{flex:1;text-align:center;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:10px 8px;border-radius:2px;border:none;background:#1a6fd4;color:#fff;transition:background .18s;}
+.ca-go:hover{background:#1258b0;}
+
+/* PLACES SECTION */
+.places-section{padding:70px 5vw 90px;background:#0d1117;}
+.places-filter{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
+.pf-btn{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:8px 18px;border-radius:2px;border:1.5px solid #1e2d42;background:transparent;color:#5a7a9a;transition:border-color .15s,color .15s,background .15s;}
+.pf-btn.active,.pf-btn:hover{border-color:#1a6fd4;color:#4a90e2;background:rgba(26,111,212,.1);}
+
+/* PLACES GRID with images */
+.places-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
+.place-tile{background:#111827;border:1px solid #1e2d42;border-radius:5px;overflow:hidden;transition:border-color .2s,transform .2s;}
+.place-tile:hover{border-color:#1a6fd4;transform:translateY(-3px);}
+.place-tile-img{height:140px;overflow:hidden;position:relative;}
+.place-tile-img img{height:100%;transition:transform .4s ease;}
+.place-tile:hover .place-tile-img img{transform:scale(1.07);}
+.place-tile-body{padding:14px 14px 16px;}
+.place-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px;}
+.place-tile h4{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;text-transform:uppercase;color:#fff;}
+.place-tile .area{font-family:'JetBrains Mono',monospace;font-size:10px;color:#5a7a9a;white-space:nowrap;}
+.place-tile .desc{font-size:12px;color:#6a8099;line-height:1.5;margin-bottom:10px;}
+.diff-chip{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.5px;padding:3px 8px;border-radius:2px;text-transform:uppercase;display:inline-block;}
+.diff-chip.Easy{background:rgba(111,174,114,.15);color:#6fae72;border:1px solid #6fae72;}
+.diff-chip.Moderate{background:rgba(217,164,65,.15);color:#d9a441;border:1px solid #d9a441;}
+.diff-chip.Extreme{background:rgba(194,80,80,.15);color:#c25050;border:1px solid #c25050;}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(3,5,9,.82);display:none;align-items:center;justify-content:center;z-index:300;padding:5vh 4vw;backdrop-filter:blur(4px);}
+.modal-overlay.open{display:flex;}
+.modal{background:#111827;border:1px solid #1e2d42;border-radius:6px;width:100%;max-width:700px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.6);}
+.modal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 28px;border-bottom:1px solid #1e2d42;background:#0d1117;}
+.modal-head h3{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;color:#fff;}
+.modal-head .msub{font-family:'JetBrains Mono',monospace;font-size:11px;color:#5a7a9a;margin-top:3px;}
+.modal-close{background:transparent;border:1px solid #1e2d42;color:#8a9bb0;width:32px;height:32px;border-radius:50%;font-size:17px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.modal-close:hover{border-color:#1a6fd4;color:#4a90e2;}
+.modal-body{padding:20px 28px 28px;overflow-y:auto;}
+.inv-list{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.inv-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 16px;background:#0a0d12;border:1px solid #1e2d42;border-radius:4px;cursor:pointer;transition:border-color .15s;}
+.inv-row:hover{border-color:#1a6fd4;}
+.inv-code{font-family:'JetBrains Mono',monospace;font-size:11px;color:#4a90e2;margin-right:10px;}
+.inv-name{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;color:#fff;}
+.inv-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:#5a7a9a;}
+
+/* FOOTER */
+.footer{background:#050709;border-top:1px solid #111e2e;}
+.footer-inner{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;padding:60px 5vw 40px;}
+.fb-name{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;text-transform:uppercase;color:#fff;}
+.fb-name span{color:#1a6fd4;}
+.fb-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.5px;color:#4a6a8a;text-transform:uppercase;margin-top:4px;}
+.footer-brand p{font-size:13px;color:#4a6a8a;line-height:1.7;margin-top:16px;max-width:240px;}
+.footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:16px;}
+.footer-col a{display:block;font-size:13px;color:#4a6a8a;margin-bottom:10px;transition:color .15s;}
+.footer-col a:hover{color:#4a90e2;}
+.footer-bottom{border-top:1px solid #111e2e;padding:18px 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-bottom span{font-family:'JetBrains Mono',monospace;font-size:11px;color:#2a4060;}
+.footer-bottom .deploy{color:#1a6fd4;}
+
+@media(max-width:900px){.aerial-section{grid-template-columns:1fr;}.aerial-img{height:320px;}.photo-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}.photo-tile:first-child{grid-row:auto;}.photo-tile{height:200px;}.footer-inner{grid-template-columns:1fr 1fr;}}
+@media(max-width:600px){nav{display:none;}.hamburger{display:flex;}.hero-btns{flex-direction:column;}.photo-grid{grid-template-columns:1fr;}.photo-tile{height:200px;}.footer-inner{grid-template-columns:1fr;gap:24px;padding:40px 5vw 24px;}.aerial-info{padding:40px 5vw;}.places-grid{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>09.9312° N, 76.2673° E &nbsp;|&nbsp; info@dirtdraft.in</div>
+  <div class="right">+91 98765 43210</div>
+</div>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M2 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0"/><circle cx="5" cy="12" r="1.5" fill="#fff" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="#fff" stroke="none"/></svg>
+      </div>
+      <div>
+        <div class="brand">DIRT <span>DRAFT</span></div>
+        <div class="logo-sub">Kerala Off-Road</div>
+      </div>
+    </div>
+    <nav id="mainNav">
+      <a href="#">Home</a>
+      <a href="#fleet-section">Fleet</a>
+      <a href="#places-section">Trails</a>
+      <a href="#">Membership</a>
+      <a href="#contact" class="nav-cta">Book Now</a>
+    </nav>
+    <button class="hamburger" onclick="document.getElementById('mainNav').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO — real Mahindra Thar on dirt road (Kerala vibes) -->
+<section class="hero-wrap">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eye">Est. Kerala — Off-Road Division</div>
+    <h1 class="hero-h1">Built for<br>the <em>untamed</em><br>Kerala wild.</h1>
+    <p class="hero-sub">28 handpicked 4x4 platforms. 30 mapped Kerala trails. One mission — get you through ground that stops everything else.</p>
+    <div class="hero-btns">
+      <button class="hbtn hbtn-solid" onclick="openInventory()">&#128193; View full inventory</button>
+      <button class="hbtn hbtn-outline" onclick="document.getElementById('places-section').scrollIntoView({behavior:'smooth'})">&#128506; Kerala trails</button>
+    </div>
+  </div>
+</section>
+
+<div class="stat-band">
+  <div class="stat-item"><span class="n">28</span><span class="l">Vehicles in stock</span></div>
+  <div class="stat-item"><span class="n">30</span><span class="l">Kerala trails</span></div>
+  <div class="stat-item"><span class="n">4WD</span><span class="l">Every platform</span></div>
+  <div class="stat-item"><span class="n">10+</span><span class="l">Indian brands</span></div>
+  <div class="stat-item"><span class="n">24/7</span><span class="l">Recovery support</span></div>
+</div>
+
+<!-- AERIAL SPLIT — real Munnar Kerala photo -->
+<section class="aerial-section">
+  <div class="aerial-img">
+    <img src="https://images.unsplash.com/photo-1711192702535-eac61a78ecb0?w=900&q=80&fit=crop" alt="Munnar Kerala highlands" loading="lazy">
+    <div class="img-label"><span>Aerial view — Idukki</span><h3>Munnar Highland Trails</h3></div>
+  </div>
+  <div class="aerial-info">
+    <h2>Where Every<br><span>Track Begins.</span></h2>
+    <p>Idukki to Wayanad, Palakkad to Pathanamthitta — we've mapped, tested and graded 30+ trails across Kerala's most rugged terrain so you go in prepared, not surprised.</p>
+    <div class="tag-row">
+      <span class="atag">Idukki Highlands</span>
+      <span class="atag">Wayanad Trails</span>
+      <span class="atag">Palakkad Forest</span>
+      <span class="atag">Western Ghats</span>
+    </div>
+    <button class="info-btn" onclick="document.getElementById('places-section').scrollIntoView({behavior:'smooth'})">Explore trails &#8594;</button>
+  </div>
+</section>
+
+<!-- PHOTO GRID — real off-road + Kerala place photos -->
+<section class="photo-section">
+  <div class="section-eyebrow">The Dirt Draft Experience</div>
+  <h2 class="section-title">Land. Mud. Rock. Repeat.</h2>
+  <div class="photo-grid">
+    <div class="photo-tile">
+      <img src="https://images.unsplash.com/photo-1694933114200-3f8e27cf94c9?w=800&q=80&fit=crop" alt="Thar on mud road Kerala" loading="lazy">
+      <div class="overlay"><span>Kolukkumalai Jeep Track — Idukki</span></div>
+    </div>
+    <div class="photo-tile">
+      <img src="https://images.unsplash.com/photo-1658051161493-1d311c4c7b4d?w=600&q=80&fit=crop" alt="Munnar green valley" loading="lazy">
+      <div class="overlay"><span>Munnar Green Valley</span></div>
+    </div>
+    <div class="photo-tile">
+      <img src="https://images.unsplash.com/photo-1648484302387-0ec86a9ad498?w=600&q=80&fit=crop" alt="Munnar tea hills" loading="lazy">
+      <div class="overlay"><span>Kanthalloor Tea Trail</span></div>
+    </div>
+    <div class="photo-tile">
+      <img src="https://images.unsplash.com/photo-1564481201145-4d5fced5f845?w=600&q=80&fit=crop" alt="Toyota SUV on hill" loading="lazy">
+      <div class="overlay"><span>Land Cruiser — Wayanad Hills</span></div>
+    </div>
+    <div class="photo-tile">
+      <img src="https://images.unsplash.com/photo-1686376351261-7a1d6e6e2939?w=600&q=80&fit=crop" alt="Munnar mist mountain" loading="lazy">
+      <div class="overlay"><span>Meesapulimala Base Trail</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET SECTION -->
+<section class="fleet-section" id="fleet-section">
+  <div class="fleet-header">
+    <div>
+      <div class="section-eyebrow">Our Vehicles</div>
+      <h2 class="section-title" style="margin-bottom:0">The Fleet</h2>
+    </div>
+    <div class="fleet-header-btns">
+      <button class="fhbtn primary" onclick="openInventory()">&#128193; Full inventory</button>
+      <button class="fhbtn ghost" onclick="openPlaces(null)">&#128506; Kerala trails</button>
+    </div>
+  </div>
+  <div class="fleet-grid" id="fleetGrid"></div>
+</section>
+
+<!-- PLACES SECTION with images -->
+<section class="places-section" id="places-section">
+  <div class="section-eyebrow">Where to Ride</div>
+  <h2 class="section-title">Kerala Off-Road Destinations</h2>
+  <div class="places-filter" id="placesFilter">
+    <button class="pf-btn active" data-diff="All" onclick="filterSection('All')">All (30)</button>
+    <button class="pf-btn" data-diff="Easy" onclick="filterSection('Easy')">Easy</button>
+    <button class="pf-btn" data-diff="Moderate" onclick="filterSection('Moderate')">Moderate</button>
+    <button class="pf-btn" data-diff="Extreme" onclick="filterSection('Extreme')">Extreme</button>
+  </div>
+  <div class="places-grid" id="placesGrid"></div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="fb-name">DIRT <span>DRAFT</span></div>
+      <div class="fb-sub">Kerala's premier 4x4 destination</div>
+      <p>Handpicked off-road machines and tested Kerala trails — we get you through ground that stops everything else.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Quick links</h5>
+      <a href="#">Home</a><a href="#fleet-section">Our Fleet</a><a href="#places-section">Kerala Trails</a><a href="#">Membership</a>
+    </div>
+    <div class="footer-col">
+      <h5>Brands</h5>
+      <a href="#">Mahindra</a><a href="#">Toyota</a><a href="#">Force Gurkha</a><a href="#">Jeep</a><a href="#">Land Rover</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="#">+91 98765 43210</a><a href="#">info@dirtdraft.in</a><a href="#">Kerala, India</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Dirt Draft &copy; 2026 — All rights reserved</span>
+    <span class="deploy">Deployed via Jenkins + Docker + AWS</span>
+  </div>
+</footer>
+
+<!-- INVENTORY MODAL -->
+<div class="modal-overlay" id="inventoryModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h3>Full Inventory</h3><div class="msub">28 units — click any vehicle to see matched Kerala trails</div></div>
+      <button class="modal-close" onclick="closeModal('inventoryModal')">&times;</button>
+    </div>
+    <div class="modal-body"><ul class="inv-list" id="inventoryList"></ul></div>
+  </div>
+</div>
+
+<!-- PLACES MODAL -->
+<div class="modal-overlay" id="placesModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h3 id="modalPlacesTitle">Kerala Off-Road Places</h3><div class="msub" id="modalPlacesSub">30 mapped locations</div></div>
+      <button class="modal-close" onclick="closeModal('placesModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="places-filter" style="margin-bottom:18px" id="modalFilter">
+        <button class="pf-btn active" data-diff="All" onclick="filterModal('All')">All</button>
+        <button class="pf-btn" data-diff="Easy" onclick="filterModal('Easy')">Easy</button>
+        <button class="pf-btn" data-diff="Moderate" onclick="filterModal('Moderate')">Moderate</button>
+        <button class="pf-btn" data-diff="Extreme" onclick="filterModal('Extreme')">Extreme</button>
+      </div>
+      <div id="modalPlacesList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============ REAL UNSPLASH PHOTO IDs — Cars ============
+const CARS = [
+  {code:"LC-100",name:"Toyota Land Cruiser",cls:"Premium SUV",engine:"4.7L V8",drive:"Full-Time 4WD",clearance:225,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1624062999726-083e5268525d?w=500&q=75&fit=crop"},
+  {code:"FE-3.2",name:"Ford Endeavour",cls:"Adventure SUV",engine:"3.2L Diesel",drive:"4x4 Shift-on-Fly",clearance:228,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1564481201145-4d5fced5f845?w=500&q=75&fit=crop"},
+  {code:"HX-4D",name:"Toyota Hilux",cls:"Pickup Truck",engine:"2.8L Turbo-D",drive:"Part-Time 4WD",clearance:216,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1666707738273-bc2d1deebc89?w=500&q=75&fit=crop"},
+  {code:"TH-15",name:"Mahindra Thar",cls:"Off-Road SUV",engine:"2.2L mHawk Diesel",drive:"4WD Shift-on-Fly",clearance:226,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1710225358761-4f5891df657d?w=500&q=75&fit=crop"},
+  {code:"TH-RX",name:"Mahindra Thar Roxx",cls:"Off-Road SUV",engine:"2.2L mHawk Diesel",drive:"4XPLOR 4WD",clearance:226,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1730829633900-0d97444c2bc6?w=500&q=75&fit=crop"},
+  {code:"SC-N7",name:"Mahindra Scorpio-N",cls:"SUV",engine:"2.2L mHawk Diesel",drive:"4WD Low Ratio",clearance:222,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1710225395366-b0bfc6514eb0?w=500&q=75&fit=crop"},
+  {code:"SC-CL",name:"Mahindra Scorpio Classic",cls:"SUV",engine:"2.2L mHawk Diesel",drive:"4WD Shift-on-Fly",clearance:180,difficulty:"Easy",
+   img:"https://images.unsplash.com/photo-1642927492908-f31e0f35b774?w=500&q=75&fit=crop"},
+  {code:"BL-CP",name:"Mahindra Bolero Camper",cls:"Pickup Truck",engine:"1.5L mHawk Diesel",drive:"RWD Heavy Duty",clearance:187,difficulty:"Easy",
+   img:"https://images.unsplash.com/photo-1703953788407-a3441e458677?w=500&q=75&fit=crop"},
+  {code:"XV-700",name:"Mahindra XUV700",cls:"SUV",engine:"2.2L mHawk Diesel",drive:"AWD Adaptive",clearance:200,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1694670929840-facffe49acd1?w=500&q=75&fit=crop"},
+  {code:"SF-DT",name:"Tata Safari",cls:"SUV",engine:"2.0L Kryotec Diesel",drive:"Terrain Response",clearance:205,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1557713559-7e5ea698b12b?w=500&q=75&fit=crop"},
+  {code:"HR-DT",name:"Tata Harrier",cls:"SUV",engine:"2.0L Kryotec Diesel",drive:"FWD / Terrain",clearance:205,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1662832245207-e4e52c3b713e?w=500&q=75&fit=crop"},
+  {code:"SR-EV",name:"Tata Sierra",cls:"SUV",engine:"1.5L Turbo Petrol",drive:"AWD Available",clearance:209,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1612934562611-8da36d7c7c29?w=500&q=75&fit=crop"},
+  {code:"XN-XT",name:"Tata Xenon XT",cls:"Pickup Truck",engine:"2.2L DICOR Diesel",drive:"4x4 Part-Time",clearance:210,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1714107891520-750efad2811b?w=500&q=75&fit=crop"},
+  {code:"GK-XT",name:"Force Gurkha",cls:"Off-Road Jeep",engine:"2.6L Turbo Diesel",drive:"Shift-on-Fly 4WD",clearance:244,difficulty:"Extreme",
+   img:"https://images.unsplash.com/photo-1624958369967-000264f7fc3c?w=500&q=75&fit=crop"},
+  {code:"JM-4X",name:"Maruti Suzuki Jimny",cls:"Off-Road SUV",engine:"1.5L K15B Petrol",drive:"ALLGRIP PRO 4WD",clearance:210,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1710225427267-d21102737ad1?w=500&q=75&fit=crop"},
+  {code:"GY-MK",name:"Maruti Suzuki Gypsy",cls:"Off-Road Jeep",engine:"1.3L Petrol",drive:"Part-Time 4WD",clearance:210,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1630990325544-58e7ed0d18ea?w=500&q=75&fit=crop"},
+  {code:"FT-LG",name:"Toyota Fortuner",cls:"SUV",engine:"2.8L Turbo Diesel",drive:"Part-Time 4WD",clearance:224,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1577902567085-ac6ebbb1525e?w=500&q=75&fit=crop"},
+  {code:"PR-4L",name:"Toyota Land Cruiser Prado",cls:"Premium SUV",engine:"2.8L Turbo Diesel",drive:"Full-Time 4WD",clearance:220,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1662924661355-81847117247e?w=500&q=75&fit=crop"},
+  {code:"DM-VC",name:"Isuzu D-Max V-Cross",cls:"Pickup Truck",engine:"1.9L RZ4E Diesel",drive:"Shift-on-Fly 4WD",clearance:235,difficulty:"Extreme",
+   img:"https://images.unsplash.com/photo-1662832245207-e4e52c3b713e?w=500&q=75&fit=crop"},
+  {code:"MX-7S",name:"Isuzu MU-X",cls:"SUV",engine:"1.9L RZ4E Diesel",drive:"Terrain Command 4WD",clearance:230,difficulty:"Extreme",
+   img:"https://images.unsplash.com/photo-1501982368380-01ae00c26ee2?w=500&q=75&fit=crop"},
+  {code:"CP-TH",name:"Jeep Compass Trailhawk",cls:"Off-Road SUV",engine:"2.0L MultiJet Diesel",drive:"Active Drive Low 4x4",clearance:198,difficulty:"Easy",
+   img:"https://images.unsplash.com/photo-1606760527743-2010b8f453f2?w=500&q=75&fit=crop"},
+  {code:"WR-RB",name:"Jeep Wrangler Rubicon",cls:"Off-Road Jeep",engine:"2.0L Turbo Petrol",drive:"Rock-Trac 4x4",clearance:252,difficulty:"Extreme",
+   img:"https://images.unsplash.com/photo-1708853980353-737b67cc2060?w=500&q=75&fit=crop"},
+  {code:"MD-5S",name:"Jeep Meridian",cls:"SUV",engine:"2.0L MultiJet Diesel",drive:"4x4 Selec-Terrain",clearance:199,difficulty:"Easy",
+   img:"https://images.unsplash.com/photo-1654688554491-69d21d38fb91?w=500&q=75&fit=crop"},
+  {code:"DF-110",name:"Land Rover Defender 110",cls:"Premium SUV",engine:"3.0L Turbo Diesel",drive:"Terrain Response 2",clearance:291,difficulty:"Extreme",
+   img:"https://images.unsplash.com/photo-1662924661355-81847117247e?w=500&q=75&fit=crop"},
+  {code:"TR-4X",name:"Nissan Terrano",cls:"SUV",engine:"1.5L dCi Diesel",drive:"FWD / AWD Option",clearance:205,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1637708015616-156ee166b471?w=500&q=75&fit=crop"},
+  {code:"DS-4X",name:"Renault Duster",cls:"SUV",engine:"1.3L Turbo Petrol",drive:"AWD Available",clearance:205,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1710225415958-a3ca402ebfab?w=500&q=75&fit=crop"},
+  {code:"TG-GT",name:"Volkswagen Taigun",cls:"SUV",engine:"1.5L TSI Petrol",drive:"FWD / DSG",clearance:188,difficulty:"Easy",
+   img:"https://images.unsplash.com/photo-1723306975792-f5a053a59dd3?w=500&q=75&fit=crop"},
+  {code:"GL-8S",name:"MG Gloster",cls:"Premium SUV",engine:"2.0L Twin-Turbo Diesel",drive:"Full-Time 4WD",clearance:224,difficulty:"Moderate",
+   img:"https://images.unsplash.com/photo-1666707738273-bc2d1deebc89?w=500&q=75&fit=crop"}
+];
+
+// ============ REAL PLACE PHOTOS — Kerala ============
+const PLACES = [
+  {name:"Ponmudi Hills",area:"Trivandrum",difficulty:"Easy",desc:"Graded hairpin road through tea hills, good surface throughout.",img:"https://images.unsplash.com/photo-1625401878457-a8fe61ccc6f8?w=400&q=75&fit=crop"},
+  {name:"Banasura Sagar Dam",area:"Wayanad",difficulty:"Easy",desc:"Smooth approach road with reservoir views, suitable for any SUV.",img:"https://images.unsplash.com/photo-1659336643663-a45208f29ad8?w=400&q=75&fit=crop"},
+  {name:"Kumily Periyar Road",area:"Idukki",difficulty:"Easy",desc:"Forest dept road bordering Periyar Tiger Reserve.",img:"https://images.unsplash.com/photo-1686376351261-7a1d6e6e2939?w=400&q=75&fit=crop"},
+  {name:"Munnar Top Station",area:"Idukki",difficulty:"Easy",desc:"Scenic tarmac climb with loose gravel patches near top.",img:"https://images.unsplash.com/photo-1742106854508-3b9172e52545?w=400&q=75&fit=crop"},
+  {name:"Nelliampathy Hills",area:"Palakkad",difficulty:"Easy",desc:"Estate roads through cardamom and coffee plantations.",img:"https://images.unsplash.com/photo-1707893013258-4fb26215c97a?w=400&q=75&fit=crop"},
+  {name:"Vagamon Meadows",area:"Idukki",difficulty:"Easy",desc:"Rolling grassland tracks, mostly firm ground.",img:"https://images.unsplash.com/photo-1684734898727-59bb85ab287d?w=400&q=75&fit=crop"},
+  {name:"Kuttikkanam Estates",area:"Idukki",difficulty:"Easy",desc:"Tea estate service roads with mild elevation change.",img:"https://images.unsplash.com/photo-1648484302387-0ec86a9ad498?w=400&q=75&fit=crop"},
+  {name:"Peppara Wildlife Fringe",area:"Trivandrum",difficulty:"Easy",desc:"Reservoir-side approach, packed earth with occasional ruts.",img:"https://images.unsplash.com/photo-1658051161493-1d311c4c7b4d?w=400&q=75&fit=crop"},
+  {name:"Wagamon Pine Trail",area:"Idukki",difficulty:"Moderate",desc:"Loose red soil trail through pine groves, slippery when wet.",img:"https://images.unsplash.com/photo-1711192702535-eac61a78ecb0?w=400&q=75&fit=crop"},
+  {name:"Marayoor Sandalwood",area:"Idukki",difficulty:"Moderate",desc:"Deciduous forest tracks with sandy stretches near Kanthalloor.",img:"https://images.unsplash.com/photo-1673118857471-34bedcb90ee7?w=400&q=75&fit=crop"},
+  {name:"Kanthalloor Plains",area:"Idukki",difficulty:"Moderate",desc:"High-altitude plains with rutted farm access roads.",img:"https://images.unsplash.com/photo-1742299640469-9479f1eec503?w=400&q=75&fit=crop"},
+  {name:"Athirappilly Forest Road",area:"Thrissur",difficulty:"Moderate",desc:"Riverside road with broken tarmac and water crossings.",img:"https://images.unsplash.com/photo-1676705696794-f24e72416158?w=400&q=75&fit=crop"},
+  {name:"Malakkappara Ghat",area:"Thrissur",difficulty:"Moderate",desc:"Remote inter-state ghat with potholes and shola cover.",img:"https://images.unsplash.com/photo-1586464225292-937d1632cd17?w=400&q=75&fit=crop"},
+  {name:"Thirunelli Temple",area:"Wayanad",difficulty:"Moderate",desc:"Forest road through Brahmagiri hills, broken in patches.",img:"https://images.unsplash.com/photo-1666779493339-976cf5db2e15?w=400&q=75&fit=crop"},
+  {name:"Kulamavu Dam Road",area:"Idukki",difficulty:"Moderate",desc:"Narrow reservoir-edge road with steep drop-offs.",img:"https://images.unsplash.com/photo-1625401878457-a8fe61ccc6f8?w=400&q=75&fit=crop"},
+  {name:"Idukki Wildlife Track",area:"Idukki",difficulty:"Moderate",desc:"Undulating sanctuary perimeter road, muddy after rain.",img:"https://images.unsplash.com/photo-1658051161493-1d311c4c7b4d?w=400&q=75&fit=crop"},
+  {name:"Meesapulimala Base",area:"Idukki",difficulty:"Moderate",desc:"Grassland approach to trek base, rocky in sections.",img:"https://images.unsplash.com/photo-1707893013258-4fb26215c97a?w=400&q=75&fit=crop"},
+  {name:"Chembra–Meppadi",area:"Wayanad",difficulty:"Moderate",desc:"Estate connector with washed-out sections after monsoon.",img:"https://images.unsplash.com/photo-1659336643663-a45208f29ad8?w=400&q=75&fit=crop"},
+  {name:"Chinnar Approach",area:"Idukki",difficulty:"Moderate",desc:"Dry scrub bordering Tamil Nadu, sandy river-bed crossing.",img:"https://images.unsplash.com/photo-1684734898727-59bb85ab287d?w=400&q=75&fit=crop"},
+  {name:"Gavi Buffer Zone",area:"Pathanamthitta",difficulty:"Moderate",desc:"Forest dept road through Gavi buffer, broken laterite.",img:"https://images.unsplash.com/photo-1648484302387-0ec86a9ad498?w=400&q=75&fit=crop"},
+  {name:"Anaerangal Dam",area:"Idukki",difficulty:"Moderate",desc:"Single-track dam road with tight switchbacks.",img:"https://images.unsplash.com/photo-1742106854508-3b9172e52545?w=400&q=75&fit=crop"},
+  {name:"Silent Valley Buffer",area:"Palakkad",difficulty:"Moderate",desc:"Buffer-zone forest track with exposed roots and stones.",img:"https://images.unsplash.com/photo-1676705696794-f24e72416158?w=400&q=75&fit=crop"},
+  {name:"Gavi Interior Tracks",area:"Pathanamthitta",difficulty:"Extreme",desc:"Deep forest tracks with stream fords, low-range 4WD required.",img:"https://images.unsplash.com/photo-1694933114200-3f8e27cf94c9?w=400&q=75&fit=crop"},
+  {name:"Parambikulam Trail",area:"Palakkad",difficulty:"Extreme",desc:"Tiger reserve roads, steep climbs and boulder sections.",img:"https://images.unsplash.com/photo-1710225358761-4f5891df657d?w=400&q=75&fit=crop"},
+  {name:"Pakshipathalam Trail",area:"Wayanad",difficulty:"Extreme",desc:"Rock-strewn high-altitude trail near Karnataka border.",img:"https://images.unsplash.com/photo-1730829633900-0d97444c2bc6?w=400&q=75&fit=crop"},
+  {name:"Rajamala Track",area:"Idukki",difficulty:"Extreme",desc:"Steep switchback near Eravikulam, loose scree surface.",img:"https://images.unsplash.com/photo-1711192702535-eac61a78ecb0?w=400&q=75&fit=crop"},
+  {name:"Kolukkumalai Jeep Track",area:"Idukki",difficulty:"Extreme",desc:"Classic Kerala 4x4 — eroded, rutted climb to Asia's highest tea estate.",img:"https://images.unsplash.com/photo-1742299640469-9479f1eec503?w=400&q=75&fit=crop"},
+  {name:"Anamudi Shola Trail",area:"Idukki",difficulty:"Extreme",desc:"Shola forest with slick clay sections and stream crossings.",img:"https://images.unsplash.com/photo-1624958369967-000264f7fc3c?w=400&q=75&fit=crop"},
+  {name:"Bandipur Border Road",area:"Wayanad",difficulty:"Extreme",desc:"Unmarked road along Karnataka border, rough boulder terrain.",img:"https://images.unsplash.com/photo-1686376351261-7a1d6e6e2939?w=400&q=75&fit=crop"},
+  {name:"Vellarimala Approach",area:"Wayanad",difficulty:"Extreme",desc:"Steep narrow track to trek base with exposed rock ledges.",img:"https://images.unsplash.com/photo-1673118857471-34bedcb90ee7?w=400&q=75&fit=crop"}
+];
+
+// Render fleet
+document.getElementById('fleetGrid').innerHTML = CARS.map(c=>`
+  <div class="car-card">
+    <div class="car-img">
+      <img src="${c.img}" alt="${c.name}" loading="lazy">
+      <span class="badge ${c.difficulty}">${c.difficulty}</span>
+    </div>
+    <div class="car-body">
+      <div class="car-plate">${c.code}</div>
+      <h3>${c.name}</h3>
+      <div class="car-cls">${c.cls}</div>
+      <ul class="car-specs">
+        <li><span>Engine</span><span>${c.engine}</span></li>
+        <li><span>Drivetrain</span><span>${c.drive}</span></li>
+        <li><span>Clearance</span><span>${c.clearance} mm</span></li>
+      </ul>
+      <div class="car-actions">
+        <a href="#contact" class="ca-book">Book off-road</a>
+        <button class="ca-go" onclick="openPlaces('${c.code}')">Where to go</button>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+// Render inventory modal
+document.getElementById('inventoryList').innerHTML = CARS.map(c=>`
+  <li class="inv-row" onclick="openPlaces('${c.code}')">
+    <div><span class="inv-code">${c.code}</span><span class="inv-name">${c.name}</span></div>
+    <span class="inv-meta">${c.cls} &middot; ${c.difficulty}</span>
+  </li>
+`).join('');
+
+// Render places section
+function placeTileHTML(p){
+  return `<div class="place-tile">
+    <div class="place-tile-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+    <div class="place-tile-body">
+      <div class="place-top"><h4>${p.name}</h4><span class="area">${p.area}</span></div>
+      <p class="desc">${p.desc}</p>
+      <span class="diff-chip ${p.difficulty}">${p.difficulty}</span>
+    </div>
+  </div>`;
+}
+
+function renderPlacesSection(diff){
+  const f = diff==='All'?PLACES:PLACES.filter(p=>p.difficulty===diff);
+  document.getElementById('placesGrid').innerHTML = f.map(placeTileHTML).join('');
+  document.querySelectorAll('#placesFilter .pf-btn').forEach(b=>b.classList.toggle('active',b.dataset.diff===diff));
+}
+renderPlacesSection('All');
+function filterSection(d){renderPlacesSection(d);}
+
+// Modal: places
+function renderModalPlaces(diff){
+  const f = diff==='All'?PLACES:PLACES.filter(p=>p.difficulty===diff);
+  document.getElementById('modalPlacesList').innerHTML = f.map(p=>`
+    <div class="place-tile" style="margin-bottom:12px;">
+      <div class="place-tile-img" style="height:110px;"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+      <div class="place-tile-body">
+        <div class="place-top"><h4>${p.name}</h4><span class="area">${p.area}</span></div>
+        <p class="desc">${p.desc}</p>
+        <span class="diff-chip ${p.difficulty}">${p.difficulty}</span>
+      </div>
+    </div>`).join('');
+  document.querySelectorAll('#modalFilter .pf-btn').forEach(b=>b.classList.toggle('active',b.dataset.diff===diff));
+}
+function filterModal(d){renderModalPlaces(d);}
+
+function openInventory(){document.getElementById('inventoryModal').classList.add('open');}
+
+function openPlaces(carCode){
+  const title=document.getElementById('modalPlacesTitle');
+  const sub=document.getElementById('modalPlacesSub');
+  if(carCode){
+    const car=CARS.find(c=>c.code===carCode);
+    title.textContent='Where to take the '+car.name;
+    sub.textContent='Matched to '+car.difficulty+' terrain — tap filter to see all';
+    renderModalPlaces(car.difficulty);
+  } else {
+    title.textContent='Kerala Off-Road Places';
+    sub.textContent=PLACES.length+' mapped locations across Kerala';
+    renderModalPlaces('All');
+  }
+  document.getElementById('placesModal').classList.add('open');
+  closeModal('inventoryModal');
+}
+
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+
+document.querySelectorAll('.modal-overlay').forEach(o=>{
+  o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');});
+});
+</script>
+</body>
+</html>
